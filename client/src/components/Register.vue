@@ -1,9 +1,6 @@
 <template>
     <div class="row">
       <p id="signup">Sign Up</p>
-      <div id="alert" v-if="alert">
-        {{alert}}
-      </div>
       <form class="col s12" @submit="register">
         <div class="row">
           <div class="input-field col s12">
@@ -25,6 +22,9 @@
             <label for="code">Code</label>
           </div>
         </div>
+         <div id="alert" v-if="alert">
+          {{alert}}
+         </div>
         <button type="submit" class="waves-effect waves-light btn">Sign Up</button>
         <br/>
         <br/>
@@ -63,7 +63,7 @@ export default {
       if (errorCount)
         return
       if (Cookies.get('user')) {
-        this.alert = 'You can only use one promo code'
+        this.alert = 'You can only register once'
         return
       }
       this.axios.post('http://localhost:5000/register', this.form)
